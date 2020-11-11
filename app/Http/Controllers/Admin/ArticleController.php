@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Article;
+use App\Mail\SendNewMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -49,6 +51,8 @@ class ArticleController extends Controller
         $newArticle =  new Article;
         $newArticle->fill($data);
         $newArticle->save();
+
+        Mail::to('mail@mail.it')->send(new SendNewMail($newArticle));
 
         return redirect()->route('admin.posts.index');
     }
