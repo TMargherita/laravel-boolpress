@@ -18,7 +18,7 @@ class ArticleController extends Controller
     {
         $user_id = Auth::id();
 
-        $article =  Article::where('user_id', $user_id)->get();
+        $articles =  Article::where('user_id', $user_id)->get();
 
         return view('admin.posts.index', compact('articles'));
 
@@ -51,9 +51,10 @@ class ArticleController extends Controller
      * @param  \App\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function show(Article $article)
+    public function show($slug)
     {
-        //
+        $article = Article::where("slug", $slug)->first();
+        return view('admin.posts.show', compact('article'));
     }
 
     /**
