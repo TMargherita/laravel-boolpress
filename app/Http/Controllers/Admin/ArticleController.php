@@ -31,7 +31,9 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        $user_id = Auth::id();
+        $articles =  Article::where('user_id', $user_id)->get();
+        return view('admin.posts.create', compact('articles'));
     }
 
     /**
@@ -42,7 +44,13 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $newArticle =  new Article;
+        $newArticle->fill($data);
+        $newArticle->save();
+
+        return redirect()->route('admin.posts.index');
     }
 
     /**

@@ -18,9 +18,10 @@
                 <td>{{$article->title}}</td>
                 <td>{{$article->slug}}</td>
                 <td>{{$article->contenuto}}</td>
-                <td><a href="{{route('admin.posts.show', $article->slug)}}">View</a>   
-                    Edit
-                    Delete</td>
+                <td><a href="{{route('admin.posts.show', $article->slug)}}">View</a></td>  
+                <td>Edit</td>
+                <td><a href="{{route('admin.posts.create')}}">Add</a></td>
+                <td>Delete</td>
               </tr>
             @endforeach
          
